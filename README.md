@@ -6,7 +6,7 @@ As a learning exercise I decided to try to implement some of the new constructs 
 Map
 ---
 
-### clear :: () -> ()
+### .clear :: () -> ()
 
 Remove all key-value pairs that have been set on this instance.
 
