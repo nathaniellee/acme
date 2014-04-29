@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<link rel="stylesheet" href="test/mocha.css"/>
+	</head>
+	<body>
+		<div id="mocha"></div>
+		<script>
+			var moduleName = location.href.split('?')[1].split('=')[1];
+
+			function loadJS(filename, onload) {
+				var scr = document.createElement('script');
+				scr.src = filename;
+				scr.onload = onload || function () {};
+				document.body.appendChild(scr);
+			}
+
+			loadJS(moduleName + '/' + moduleName + '.js', function () {
+				loadJS(moduleName + '/' + moduleName + '.spec.js', function () {
+					mocha.run();
+				});
+			});
+		</script>
+		<script src="test/mocha.js"></script>
+		<script src="test/chai.js"></script>
+		<script>
+			mocha.setup('bdd');
+			expect = chai.expect;
+		</script>
+	</body>
+</html>
