@@ -15,10 +15,12 @@ var map = new Map();
 
 map.set('1', 'foo');
 map.set(1, 'bar');
-map.size;   // 2
+map.size;       // 2
 
 map.clear();
-map.size;   // 0
+map.has('1');   // false
+map.has(1);     // false
+map.size;       // 0
 ```
 
 ### .delete :: * -> ()
