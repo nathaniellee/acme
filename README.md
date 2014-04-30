@@ -6,6 +6,8 @@ As a learning exercise I decided to try to implement some of the new constructs 
 Map
 ---
 
+A map object is a collection of key-value pairs where both the key and the value can be of any type. This differs from the standard JavaScript object where keys must be string values (values of other types are coerced to strings when used as object keys).
+
 ### .clear :: () -> ()
 
 Removes all key-value pairs that have been set on this instance.
