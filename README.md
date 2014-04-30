@@ -8,7 +8,7 @@ Map
 
 ### .clear :: () -> ()
 
-Remove all key-value pairs that have been set on this instance.
+Removes all key-value pairs that have been set on this instance.
 
 ```javascript
 var map = new Map();
@@ -25,7 +25,7 @@ map.size;       // 0
 
 ### .delete :: * -> ()
 
-Delete a single key-value pair from this instance.
+Deletes a single key-value pair from this instance.
 
 ```javascript
 var map = new Map();
@@ -39,9 +39,9 @@ map.has('1');   // false
 map.size;       // 1
 ```
 
-### .get :: * -> ()
+### .get :: * -> *
 
-Get the value of the specified key.
+Retrieves the value of the specified key.
 
 ```javascript
 var map = new Map();
@@ -50,4 +50,34 @@ map.set('1', 'foo');
 map.set(1, 'bar');
 map.get('1');   // 'foo'
 map.get(1);     // 'bar'
+```
+
+### .has :: * -> boolean
+
+Indicates whether a value has been set for the specified key.
+
+```javascript
+var map = new Map();
+
+map.set('1', 'foo');
+map.has('1');   // true
+map.has(1);     // false
+```
+
+### .set :: * -> * -> ()
+
+Adds the specified key-value pair to the instance if the key doesn't already exist or updates the value of a pre-existing key.
+
+```javascript
+var map = new Map();
+
+map.set('1', 'foo');
+map.set(1, 'bar');
+map.get('1');   // 'foo'
+map.get(1);     // 'bar'
+map.size;       // 2
+
+map.set('1', 'baz');
+map.get('1');   // 'baz'
+map.size;       // 2
 ```
