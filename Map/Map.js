@@ -1,5 +1,5 @@
 (function (global) {
-	function Map() {
+	function Map(items) {
 		var _self = this;
 		var _getId = (function () {
 			var uid = 0;
@@ -12,7 +12,19 @@
 		var _valueForNaNKey = undefined;
 		var _hasValueForNaNKey = false;
 
-		function _init() {
+		function _init(items) {
+			var i, l, item;
+
+			if (Array.isArray(items)) {
+				for (i = 0, l = items.length; i < l; i++) {
+					item = items[i];
+
+					if (Array.isArray(item)) {
+						_setValue(item[0], item[1]);
+					}
+				}
+			}
+
 			_setSize();
 		}
 
@@ -139,7 +151,7 @@
 		this.has = _hasKey;
 		this.set = _setValue;
 
-		_init();
+		_init(items);
 	}
 
 	global.Map = Map;
