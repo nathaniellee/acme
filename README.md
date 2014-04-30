@@ -38,3 +38,16 @@ map.delete('1');
 map.has('1');   // false
 map.size;       // 1
 ```
+
+### .get :: * -> ()
+
+Get the value of the specified key.
+
+```javascript
+var map = new Map();
+
+map.set('1', 'foo');
+map.set(1, 'bar');
+map.get('1');   // 'foo'
+map.get(1);     // 'bar'
+```
