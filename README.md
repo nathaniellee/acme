@@ -66,7 +66,7 @@ map.has(1);     // false
 
 ### .set :: * -> * -> ()
 
-Adds the specified key-value pair to the instance if the key doesn't already exist or updates the value of a pre-existing key.
+Adds the specified key-value pair to this instance if the key doesn't already exist or updates the value of a pre-existing key.
 
 ```javascript
 var map = new Map();
@@ -80,4 +80,24 @@ map.size;       // 2
 map.set('1', 'baz');
 map.get('1');   // 'baz'
 map.size;       // 2
+```
+
+### .size :: number
+
+Represents the number of key-value pairs that have been set on this instance.
+
+```javascript
+var map = new Map();
+
+map.set('1', 'foo');
+map.size;   // 1
+
+map.set(1, 'bar');
+map.size;   // 2
+
+map.set({}, 'baz');
+map.size;   // 3
+
+map.delete(1);
+map.size;   // 2
 ```
