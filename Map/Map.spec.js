@@ -51,6 +51,12 @@ describe('ES6 Map shim', function () {
 			_module.delete(123);
 			expect(_module.size).to.equal(0);
 		});
+
+		it('returns false.', function () {
+			_instantiate();
+			_module.set(123, 'foo');
+			expect(_module.delete(123)).to.be.false;
+		});
 	});
 
 	describe('.get :: * -> *', function () {
