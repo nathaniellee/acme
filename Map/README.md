@@ -3,6 +3,13 @@ Map
 
 A Map object is a collection of key-value pairs where both the key and the value can be of any type. This differs from the standard JavaScript object where keys must be string values (values of other types are coerced to strings when used as object keys).
 
+Table of Contents
+-----------------
+
+* [Instantiation](#instantiation)
+* [Properties](#properties)
+* [Methods](#methods)
+
 Instantiation
 -------------
 
@@ -35,8 +42,6 @@ map.size;       // 0
 Properties
 ----------
 
-* [size](#size-----)
-
 ### .size :: number
 
 Represents the number of key-value pairs that have been set on this instance.
@@ -61,10 +66,10 @@ Methods
 -------
 
 * [clear](#clear-----)
-* [delete](#delete-----)
+* [delete](#delete-----boolean)
 * [get](#get-----)
-* [has](#has-----)
-* [set](#set-----)
+* [has](#has-----boolean)
+* [set](#set--------)
 
 ### .clear :: () -> ()
 
