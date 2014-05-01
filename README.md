@@ -6,8 +6,8 @@ As a learning exercise I decided to try to implement some of the new constructs 
 Table of Contents
 -----------------
 
-* [Map](#Map)
-* [Set](#Set)
+* [Map](#map)
+* [Set](#set)
 
 Map
 ---
