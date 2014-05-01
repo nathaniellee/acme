@@ -12,7 +12,35 @@ Table of Contents
 Map
 ---
 
-A map object is a collection of key-value pairs where both the key and the value can be of any type. This differs from the standard JavaScript object where keys must be string values (values of other types are coerced to strings when used as object keys).
+A Map object is a collection of key-value pairs where both the key and the value can be of any type. This differs from the standard JavaScript object where keys must be string values (values of other types are coerced to strings when used as object keys).
+
+### Instantiation
+
+The Map constructor accepts an array of key-value pairs, defined in two-item arrays, that will serve as the initial collection of members, but it can also be instantiated without any arguments. The constructor will ignore arguments of other types rather than throwing an error.
+
+```javascript 
+var map = new Map([
+	['1', 'foo'],
+	[1, 'bar']
+]);
+
+map.has('1');   // true
+map.has(1);     // true
+map.size;       // 2
+
+map = new Map();
+map.size;       // 0
+
+map = new Map('abc');
+map.size;       // 0
+
+map = new Map([
+	'foo',
+	'bar',
+	'baz'
+]);
+map.size;       // 0
+```
 
 ### .clear :: () -> ()
 
@@ -113,7 +141,28 @@ map.size;   // 2
 Set
 ---
 
-A set object is a collection of unique values. This differs from the standard JavaScript array which can store the same value at multiple indices.
+A Set object is a collection of unique values. This differs from the standard JavaScript array which can store the same value at multiple indices.
+
+### Instantiation
+
+The Set constructor accepts an array of values that will serve as the initial collection of members, but it can also be instantiated without any arguments. The constructor will ignore arguments of other types rather than throwing an error.
+
+```javascript 
+var set = new Set([
+	'1',
+	1
+]);
+
+set.has('1');   // true
+set.has(1);     // true
+set.size;       // 2
+
+set = new Set();
+set.size;       // 0
+
+set = new Set('abc');
+set.size;       // 0
+```
 
 ### .add :: * -> ()
 
