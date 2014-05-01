@@ -1,5 +1,6 @@
 (function (global) {
 	function Set(items) {
+		var _self = this;
 		var _indexForNaNValue = -1;
 		var _values = [];
 
@@ -69,6 +70,8 @@
 				_values.splice(index, 1);
 				_setSize();
 			}
+
+			return false;
 		}
 
 		/***********************************************************************
