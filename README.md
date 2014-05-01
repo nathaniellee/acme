@@ -7,7 +7,7 @@ Table of Contents
 -----------------
 
 * [Map](#Map)
-* [Set][#Set]
+* [Set](#Set)
 
 Map
 ---
