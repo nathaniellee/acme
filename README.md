@@ -3,6 +3,12 @@ Fun with ECMAScript 6
 
 As a learning exercise I decided to try to implement some of the new constructs that are planned for ECMAScript 6.
 
+Table of Contents
+-----------------
+
+* [Map](#Map)
+* [Set][#Set]
+
 Map
 ---
 
