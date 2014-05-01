@@ -79,7 +79,7 @@ describe('ES6 Map shim', function () {
 			expect(_module.has(123)).to.be.true;
 		});
 
-		it('returns false if a value has been set for the specified key.', function () {
+		it('returns false if a value has not been set for the specified key.', function () {
 			_instantiate();
 			expect(_module.has(123)).to.be.false;
 		});
