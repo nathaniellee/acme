@@ -22,15 +22,15 @@ describe('ES6 Set shim', function () {
 			});
 		});
 
-		xit('accepts an array of arrays of values.', function () {
+		it('accepts an array of arrays of values.', function () {
 			_instantiate([
-				[123, 'foo'],
-				['123', 'bar'],
-				[NaN, 'baz']
+				123,
+				'123',
+				NaN
 			]);
-			expect(_module.get(123)).to.equal('foo');
-			expect(_module.get('123')).to.equal('bar');
-			expect(_module.get(NaN)).to.equal('baz');
+			expect(_module.has(123)).to.be.true;
+			expect(_module.has('123')).to.be.true;
+			expect(_module.has(NaN)).to.be.true;
 			expect(_module.size).to.equal(3);
 		});
 	});

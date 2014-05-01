@@ -4,7 +4,13 @@
 		var _indexForNaNValue = -1;
 		var _values = [];
 
-		function _init(items) {}
+		function _init(items) {
+			if (Array.isArray(items)) {
+				for (var i = 0, l = items.length; i < l; i++) {
+					_addValue(items[i]);
+				}
+			}
+		}
 
 		/***********************************************************************
 		 *  
