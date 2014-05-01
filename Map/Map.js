@@ -45,7 +45,7 @@
 
 		/***********************************************************************
 		 *  
-		 *  _deleteValue :: * -> ()
+		 *  _deleteValue :: * -> boolean
 		 *  
 		 *  Remove a specific key/value pair from this instance.
 		 *  
