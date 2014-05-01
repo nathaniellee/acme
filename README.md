@@ -110,6 +110,8 @@ map.delete(1);
 map.size;   // 2
 ```
 
+[Back to table of contents](#table-of-contents)
+
 Set
 ---
 
@@ -196,3 +198,5 @@ set.size;   // 3
 set.delete(1);
 set.size;   // 2
 ```
+
+[Back to table of contents](#table-of-contents)
