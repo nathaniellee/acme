@@ -176,17 +176,17 @@ set.has(1);     // false
 Represents the number of key-value pairs that have been set on this instance.
 
 ```javascript
-var map = new Map();
+var set = new Set();
 
-map.set('1', 'foo');
-map.size;   // 1
+set.add('1');
+set.size;   // 1
 
-map.set(1, 'bar');
-map.size;   // 2
+set.add(1);
+set.size;   // 2
 
-map.set({}, 'baz');
-map.size;   // 3
+set.add({});
+set.size;   // 3
 
-map.delete(1);
-map.size;   // 2
+set.delete(1);
+set.size;   // 2
 ```
