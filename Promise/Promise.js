@@ -19,6 +19,9 @@
 			}
 		}
 
+		// TODO: This function should not be part of this module since it is
+		//       part of the ES6 Promise specification and not an inherent part
+		//       of the Promise/A+ specification.
 		function _catch(rejectedHandler) {
 			return _then(undefined, rejectedHandler);
 		}
@@ -84,6 +87,7 @@
 			return promise;
 		}
 
+		// TODO: See the _catch method's todo.
 		this.catch = _catch;
 		this.then = _then;
 	}
