@@ -10,23 +10,25 @@
 		var _value;
 
 		if (typeof resolver !== 'function') {
-			throw new Error('The `resolver` param must be a function.');
+			throw new Error('A resolver function must be supplied to the promise constructor.');
 		} else {
-			resolver(_fulfill, _reject);
+			try {
+				resolver(_fulfill, _reject);
+			} catch (err) {
+				_reject(err);
+			}
+		}
+
+		function _catch(rejectedHandler) {
+			return _then(undefined, rejectedHandler);
 		}
 
 		function _fulfill(value) {
 			if (_state === STATE_PENDING) {
 				_state = STATE_FULFILLED;
 				_value = value;
-
-				// Once the execution stack is empty invoke each of the queued
-				// fulfilled handlers in the order in which they were added,
-				// passing in the fulfilled value, and then clear the queue.
-				global.setTimeout(function () {
-					_broadcaster.broadcast('fulfilled', _value);
-					_broadcaster.clear('fulfilled');
-				}, 0);
+				_broadcaster.broadcast('fulfilled', value);
+				_broadcaster.clear('fulfilled');
 			}
 		}
 
@@ -34,44 +36,55 @@
 			if (_state === STATE_PENDING) {
 				_state = STATE_REJECTED;
 				_reason = reason;
-
-				// Once the execution stack is empty invoke each of the queued
-				// rejected handlers in the order in which they were added,
-				// passing in the rejection reason, and then clear the queue.
-				global.setTimeout(function () {
-					_broadcaster.broadcast('rejected', _reason);
-					_broadcaster.clear('rejected');
-				}, 0);
+				_broadcaster.broadcast('rejected', reason);
+				_broadcaster.clear('rejected');
 			}
 		}
 
 		function _then(fulfillHandler, rejectHandler) {
 			var promise = new PromiseAPlus(function (fulfill, reject) {
-				_broadcaster.listen('fulfilled', function (value) {
-					// If `fulfillHandler` returns a value, fulfill this new
-					// promise with that value. If it throws an error, reject
-					// this new promise with that error as the reason.
+				function onFulfilled(value) {
 					try {
 						fulfill(fulfillHandler(value));
-					} catch(reason) {
-						reject(reason);
+					} catch (err) {
+						reject(err);
 					}
-				});
-				_broadcaster.listen('rejected', function (reason) {
-					// If `rejectHandler` returns a value, fulfill this new
-					// promise with that value. If it throws an error, reject
-					// this new promise with that error as the reason.
+				}
+
+				function onRejected(reason) {
 					try {
 						fulfill(rejectHandler(reason));
-					} catch(reason) {
-						reject(reason);
+					} catch (err) {
+						reject(err);
 					}
-				});
+				}
+
+				/*
+				 * The supplied handlers must be called asynchronously after the
+				 * event loop turn in which this method was called.
+				 */
+				if (_state === STATE_FULFILLED) {
+					global.setTimeout(function () {
+						onFulfilled(_value);
+					}, 0);
+				} else if (_state === STATE_REJECTED) {
+					global.setTimeout(function () {
+						onRejected(_reason);
+					}, 0);
+				} else {
+					_broadcaster.listen('fulfilled', function (value) {
+						onFulfilled(value);
+					});
+					_broadcaster.listen('rejected', function (reason) {
+						onRejected(reason);
+					});
+				}
 			});
 
 			return promise;
 		}
 
+		this.catch = _catch;
 		this.then = _then;
 	}
 
